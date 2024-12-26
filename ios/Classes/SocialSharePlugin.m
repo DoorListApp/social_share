@@ -32,6 +32,8 @@
         NSString *attributionURL = call.arguments[@"attributionURL"];
         NSString *backgroundImage = call.arguments[@"backgroundImage"];
         NSString *backgroundVideo = call.arguments[@"backgroundVideo"];
+        NSString *linkURL = call.arguments[@"linkURL"];
+        NSString *linkText = call.arguments[@"linkText"];
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
 
@@ -60,6 +62,14 @@
         
         if (![attributionURL isKindOfClass:[NSNull class]]) {
             [pasteboardItems setObject:attributionURL forKey:[NSString stringWithFormat:@"%@.contentURL",destination]];
+        }
+
+        if (![linkURL isKindOfClass:[NSNull class]]) {
+            [pasteboardItems setObject:linkURL forKey:[NSString stringWithFormat:@"%@.linkURL",destination]];
+        }
+
+        if (![linkText isKindOfClass:[NSNull class]]) {
+            [pasteboardItems setObject:linkText forKey:[NSString stringWithFormat:@"%@.linkText",destination]];
         }
         
         if (![appId isKindOfClass:[NSNull class]] && [@"shareFacebookStory" isEqualToString:call.method]) {
